@@ -8,7 +8,7 @@ import akka.actor.ActorSystem
 
 object Main extends App {
   val system = ActorSystem("server")
-  val service = system.actorOf(TcpServer.props(EchoHandlerProps), "ServerActor")
+  val service = system.actorOf(TcpServer.props(RouterHandlerProps), "ServerActor")
 
   //system.awaitTermination()
 }

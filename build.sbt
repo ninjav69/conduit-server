@@ -11,3 +11,5 @@ libraryDependencies ++= Seq(
   "io.scalac" %%  "reactive-rabbit" % "0.2.1",
   "org.scalatest" %% "scalatest" % "2.2.4" % "test"
 )
+
+libraryDependencies += "com.github.etaty" %% "rediscala" % "1.7.0"

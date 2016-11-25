@@ -39,4 +39,15 @@ class RediscalaSpec (system: ActorSystem)
       Await.result(futurePong, 5 seconds)
     }
   }
+
+  "A RedisClient" must {
+
+    "publish a messate to redis server" in {
+      val redis = RedisClient()(system)
+
+      val result = redis.publish("all", "Hello 1234")
+
+      Await.result(result, 5 seconds)
+    }
+  }
 }

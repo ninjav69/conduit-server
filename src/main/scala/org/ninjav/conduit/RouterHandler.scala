@@ -3,6 +3,7 @@ package org.ninjav.conduit
 import akka.actor.{Props, ActorRef}
 import akka.io.Tcp.Write
 import akka.util.ByteString
+import redis.RedisClient
 
 /**
  * Created by ninjav on 11/24/16.
@@ -32,7 +33,12 @@ class RouterHandler(connection: ActorRef) extends Handler(connection) {
   // Example: hello doos
   val simplePattern = "^(.+)$".r
 
+  val redis = RedisClient()(context.system)
+
   override def received(str: String): Unit = {
+
+    // Forward to redis
+    redis.publish("all", str)
 
     str match {
       case serverPattern(text) =>
